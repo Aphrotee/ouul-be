@@ -15,7 +15,7 @@ This guide provides step-by-step instructions to deploy the Ouul backend applica
 First, clone the repository from GitHub:
 
 ```bash
-$ git clone https://github.com/yourusername/your-fastapi-app.git
+$ git clone https://github.com/Aphrotee/ouul-be.git
 
 $ cd /ouul-be
 ```
@@ -47,8 +47,8 @@ $ ./create_tables.py
 ```
 
 
-## 6. Run the Application Locally
-To run the FastAPI application locally using Uvicorn:
+## 6. Run the Application
+To run the FastAPI application using Uvicorn:
 
 ```
 uvicorn app.main:app --reload
