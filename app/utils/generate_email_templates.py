@@ -1,0 +1,193 @@
+#!/usr/bin/env python3
+
+"""Module for generating custom html templates for specific emails"""
+
+from datetime import datetime
+
+def get_application_submitted_html(firstname: str, job_title:str):
+    content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Application Response</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+            .email-container {
+                background-color: #ffffff;
+                max-width: 600px;
+                margin: 40px auto;
+                padding: 20px;
+                border: 1px solid #dddddd;
+                border-radius: 5px;
+            }
+            h1 {
+                color: #000000;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 16px;
+                color: #333333;
+                line-height: 1.6;
+            }
+            .footer {
+                margin-top: 40px;
+                font-size: 14px;
+                color: #777777;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <h1>Hi firstname,</h1>
+            <p>Thank you for your interest in Bytechain!</p>
+
+            <p>So what happens now? Our hiring team is currently reviewing your application for <strong>job_title</strong>, and should we find your background to be a fit for this role, we will be in touch.</p>
+
+            <p>We are always looking for stunning colleagues to join our team and do amazing work. So remember to check out our job site regularly as we are growing and adding openings often!</p>
+
+            <p>Thanks,<br>
+            Bytechain Talent Acquisition</p>
+
+            <div class="footer">
+                <p>&copy; year Bytechain, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+    </html>"""
+    return content.replace("firstname", firstname)\
+    .replace("job_title", job_title)\
+    .replace("year", str(datetime.now().year))
+
+def get_offer_letter_html(firstname: str, job_title:str):
+    content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Offer</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+            .email-container {
+                background-color: #ffffff;
+                max-width: 600px;
+                margin: 40px auto;
+                padding: 20px;
+                border: 1px solid #dddddd;
+                border-radius: 5px;
+            }
+            h1 {
+                color: #000000;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 16px;
+                color: #333333;
+                line-height: 1.6;
+            }
+            .footer {
+                margin-top: 40px;
+                font-size: 14px;
+                color: #777777;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <h1>Hi firstname,</h1>
+            <p>We are excited to extend you an offer for the <strong>job_title</strong> position at Bytechain!</p>
+
+            <p>Your skills and experiences are an excellent match for our team, and we believe you will contribute greatly to our goals.</p>
+
+            <p>Our team would reach out to you with your cover letter where you will find the details of the offer, including compensation, benefits, and other relevant information. Please review it at your earliest convenience.</p>
+
+            <p>We look forward to hearing from you soon and hope to welcome you to the Bytechain family!</p>
+
+            <p>Thanks,<br>
+            Bytechain Talent Acquisition</p>
+
+            <div class="footer">
+                <p>&copy; year Bytechain, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+    </html>"""
+    return content.replace("firstname", firstname)\
+    .replace("job_title", job_title)\
+    .replace("year", str(datetime.now().year))
+
+def get_application_rejected_html(firstname: str, job_title:str):
+    content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Application Response</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+            .email-container {
+                background-color: #ffffff;
+                max-width: 600px;
+                margin: 40px auto;
+                padding: 20px;
+                border: 1px solid #dddddd;
+                border-radius: 5px;
+            }
+            h1 {
+                color: #000000;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 16px;
+                color: #333333;
+                line-height: 1.6;
+            }
+            .footer {
+                margin-top: 40px;
+                font-size: 14px;
+                color: #777777;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <h1>Hi firstname,</h1>
+            <p>Thank you for your interest in Bytechain!</p>
+
+            <p>We appreciate the time you invested in the application process for the <strong>job_title</strong> position. After careful consideration, we regret to inform you that we will not be moving forward with your application at this time.</p>
+
+            <p>We encourage you to apply for future openings that match your skills and experience. Thank you again for your interest in Bytechain, and we wish you the best in your job search.</p>
+
+            <p>Thanks,<br>
+            Bytechain Talent Acquisition</p>
+
+            <div class="footer">
+                <p>&copy; year Bytechain, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+    </html>"""
+    return content.replace("firstname", firstname)\
+    .replace("job_title", job_title)\
+    .replace("year", str(datetime.now().year))
