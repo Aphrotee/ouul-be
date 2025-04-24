@@ -16,7 +16,7 @@ pids
 *.seed
 *.pid.lock
 __pycache__/
-app/__pycache__/
+*/__pycache__/
 *.pyc
 *.pyo
 *.pyd
