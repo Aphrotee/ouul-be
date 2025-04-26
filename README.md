@@ -15,9 +15,9 @@ This guide provides step-by-step instructions to deploy the Ouul backend applica
 First, clone the repository from GitHub:
 
 ```bash
-$ git clone https://github.com/Aphrotee/ouul-be.git
+$ git clone https://github.com/Brandcery/Ouul-backend.git
 
-$ cd /ouul-be
+$ cd /Ouul-backend
 ```
 
 ## 2. Activate the Virtual Environment

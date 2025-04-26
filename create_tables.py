@@ -29,6 +29,13 @@ class BlogStatus(str, enum.Enum):
     published = "published"
     deleted = "deleted"
 
+class UserType(str, enum.Enum):
+    """Enum class defining the two types of user account types"""
+    startup= "startup"
+    investor = "investor"
+    corporate = "corporate"
+    accelerator = "accelerator"
+
 class BaseModel(Base):
     """Basemodel for other database tables to inherit"""
     __abstract__ = True
@@ -61,6 +68,18 @@ class Admin(BaseModel):
     role = Column(Enum(AdminRole), nullable=False, default="user") # Admin's role (editor/admin)
     permissions = Column(JSON, nullable=False, default="{}")
     blogs = relationship("Blog", back_populates="admins")
+
+class User(BaseModel):
+    """User data model"""
+    __tablename__ = "users"
+
+    firstname = Column(String, nullable=False, default="") # User's firstname
+    lastname = Column(String, nullable=False, default="") # User's lastname
+    email = Column(String, nullable=False) # User's email address
+    password = Column(String, nullable=False, default="") # User's hashed password
+    pin = Column(String, nullable=False, default="") # User's hashed PIN
+    type = Column(Enum(UserType), nullable=False) # User account type
+    isVerified = Column(Boolean, nullable=False, default=False)
 
 
 environment = os.getenv("ENVIRONMENT")
