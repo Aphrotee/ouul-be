@@ -2,16 +2,17 @@
 
 """Module for generating custom html templates for specific emails"""
 
-from datetime import datetime
+import time
+import datetime
 
-def get_application_submitted_html(firstname: str, job_title:str):
+def verificaiton_otp_html(otp: str):
     content = """
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Job Application Response</title>
+        <title>Onboarding Verification</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -26,6 +27,9 @@ def get_application_submitted_html(firstname: str, job_title:str):
                 padding: 20px;
                 border: 1px solid #dddddd;
                 border-radius: 5px;
+            }
+            .otp {
+                font-size: 24px;
             }
             h1 {
                 color: #000000;
@@ -46,34 +50,37 @@ def get_application_submitted_html(firstname: str, job_title:str):
     </head>
     <body>
         <div class="email-container">
-            <h1>Hi firstname,</h1>
-            <p>Thank you for your interest in Bytechain!</p>
+            <p>Hello,</p>
+            <p>Thank you for signing up to Ouul!</p>
 
-            <p>So what happens now? Our hiring team is currently reviewing your application for <strong>job_title</strong>, and should we find your background to be a fit for this role, we will be in touch.</p>
+            <p>To complete the signup proess, please use the following One-Time-Pin.</p>
 
-            <p>We are always looking for stunning colleagues to join our team and do amazing work. So remember to check out our job site regularly as we are growing and adding openings often!</p>
+            <p><strong class="otp">o-t-p</strong><br>
 
-            <p>Thanks,<br>
-            Bytechain Talent Acquisition</p>
+            <p>Please note that this OTP will expire by expiry-time, please ensure to use it before that time.</p>
+
+            <p>Thanks.<br>
+            Ouul company</p>
 
             <div class="footer">
-                <p>&copy; year Bytechain, Inc. All rights reserved.</p>
+                <p>&copy; year, Ouul. All rights reserved.</p>
             </div>
         </div>
     </body>
     </html>"""
-    return content.replace("firstname", firstname)\
-    .replace("job_title", job_title)\
-    .replace("year", str(datetime.now().year))
+    return content\
+    .replace("o-t-p", otp)\
+    .replace("expiry-time", str(datetime.datetime.fromtimestamp(int(time.time()+600)).strftime('%a %d %b %Y, %I:%M:%S%p')))\
+    .replace("year", str(datetime.datetime.now().year))
 
-def get_offer_letter_html(firstname: str, job_title:str):
+def pin_reset_otp_html(otp: str):
     content = """
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Job Offer</title>
+        <title>PIN Reset</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -88,6 +95,9 @@ def get_offer_letter_html(firstname: str, job_title:str):
                 padding: 20px;
                 border: 1px solid #dddddd;
                 border-radius: 5px;
+            }
+            .otp {
+                font-size: 24px;
             }
             h1 {
                 color: #000000;
@@ -108,36 +118,38 @@ def get_offer_letter_html(firstname: str, job_title:str):
     </head>
     <body>
         <div class="email-container">
-            <h1>Hi firstname,</h1>
-            <p>We are excited to extend you an offer for the <strong>job_title</strong> position at Bytechain!</p>
+            <p>Hello,</p>
+            <p>You made a request to reset your Ouul PIN.</p>
+            <p>If this wasn't you, please ignore this eamil.</p>
 
-            <p>Your skills and experiences are an excellent match for our team, and we believe you will contribute greatly to our goals.</p>
+            <p>To complete the PIN reset proess, please use the following One-Time-Pin.</p>
 
-            <p>Our team would reach out to you with your cover letter where you will find the details of the offer, including compensation, benefits, and other relevant information. Please review it at your earliest convenience.</p>
+            <p><strong class="otp">o-t-p</strong><br>
 
-            <p>We look forward to hearing from you soon and hope to welcome you to the Bytechain family!</p>
+            <p>Please note that this OTP will expire by expiry-time, please ensure to use it before that time.</p>
 
-            <p>Thanks,<br>
-            Bytechain Talent Acquisition</p>
+            <p>Thanks.<br>
+            Ouul company</p>
 
             <div class="footer">
-                <p>&copy; year Bytechain, Inc. All rights reserved.</p>
+                <p>&copy; year, Ouul. All rights reserved.</p>
             </div>
         </div>
     </body>
     </html>"""
-    return content.replace("firstname", firstname)\
-    .replace("job_title", job_title)\
-    .replace("year", str(datetime.now().year))
+    return content\
+    .replace("o-t-p", otp)\
+    .replace("expiry-time", str(datetime.datetime.fromtimestamp(int(time.time()+600)).strftime('%a %d %b %Y, %I:%M:%S%p')))\
+    .replace("year", str(datetime.datetime.now().year))
 
-def get_application_rejected_html(firstname: str, job_title:str):
+def password_reset_otp_html(otp: str):
     content = """
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Job Application Response</title>
+        <title>Password Reset</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -152,6 +164,9 @@ def get_application_rejected_html(firstname: str, job_title:str):
                 padding: 20px;
                 border: 1px solid #dddddd;
                 border-radius: 5px;
+            }
+            .otp {
+                font-size: 24px;
             }
             h1 {
                 color: #000000;
@@ -172,22 +187,26 @@ def get_application_rejected_html(firstname: str, job_title:str):
     </head>
     <body>
         <div class="email-container">
-            <h1>Hi firstname,</h1>
-            <p>Thank you for your interest in Bytechain!</p>
+            <p>Hello,</p>
+            <p>You made a request to reset your Ouul password.</p>
+            <p>If this wasn't you, please ignore this eamil.</p>
 
-            <p>We appreciate the time you invested in the application process for the <strong>job_title</strong> position. After careful consideration, we regret to inform you that we will not be moving forward with your application at this time.</p>
+            <p>To complete the password reset proess, please use the following One-Time-Pin.</p>
 
-            <p>We encourage you to apply for future openings that match your skills and experience. Thank you again for your interest in Bytechain, and we wish you the best in your job search.</p>
+            <p><strong class="otp">o-t-p</strong><br>
 
-            <p>Thanks,<br>
-            Bytechain Talent Acquisition</p>
+            <p>Please note that this OTP will expire by expiry-time, please ensure to use it before that time.</p>
+
+            <p>Thanks.<br>
+            Ouul company</p>
 
             <div class="footer">
-                <p>&copy; year Bytechain, Inc. All rights reserved.</p>
+                <p>&copy; year, Ouul. All rights reserved.</p>
             </div>
         </div>
     </body>
     </html>"""
-    return content.replace("firstname", firstname)\
-    .replace("job_title", job_title)\
-    .replace("year", str(datetime.now().year))
+    return content\
+    .replace("o-t-p", otp)\
+    .replace("expiry-time", str(datetime.datetime.fromtimestamp(int(time.time()+600)).strftime('%a %d %b %Y, %I:%M:%S%p')))\
+    .replace("year", str(datetime.datetime.now().year))

@@ -28,7 +28,7 @@ load_dotenv()
 
 router = APIRouter(tags=["Authentication"])
 
-token_expiration = int(os.getenv("JWT_TOKEN_EXPIRY_MINUTES"))
+token_expiration = int(os.getenv("ADMIN_JWT_TOKEN_EXPIRY_MINUTES"))
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 @router.post("/auth/superuser/signup", status_code=201, response_model=AdminResponse)
@@ -67,7 +67,7 @@ async def super_admin_signup(adminSchema: AdminSignupSchema,
         raise httpError(status_code=500, detail=str(e))
 
 
-@router.post("/auth/signup", status_code=201, response_model=AdminResponse)
+@router.post("/auth/admins/signup", status_code=201, response_model=AdminResponse)
 async def admin_signup(token: Annotated[str, Depends(oauth2_scheme)],
                        adminSchema: AdminSignupSchema,
                        db: Session = Depends(get_db)):
@@ -98,7 +98,7 @@ async def admin_signup(token: Annotated[str, Depends(oauth2_scheme)],
         raise httpError(status_code=500, detail=str(e))
 
 
-@router.post("/auth/login", status_code=200, response_model=loginResponseSchema)
+@router.post("/auth/admins/login", status_code=200, response_model=loginResponseSchema)
 async def admin_login(adminSchema: Annotated[OAuth2PasswordRequestForm, Depends()],
                       db: Session = Depends(get_db)):
     """Endpoint for admin login"""

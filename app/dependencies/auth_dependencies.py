@@ -4,6 +4,7 @@
 import bcrypt, os
 from app.dependencies.error import httpError
 from app.models.admins import Admin
+from app.models.users import User
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 from fastapi import Depends
@@ -63,7 +64,7 @@ def validate_admin(token: str) -> str:
     """
     credentials_exception = httpError(status_code=401, detail="Request not authorized")
     try:
-        payload = jwt.decode(token, secret_key, algorithms=[algorithm])
+        payload: dict = jwt.decode(token, secret_key, algorithms=[algorithm])
         email: str = str(payload.get("adminEmail"))
         id: str = str(payload.get("adminId"))
         if email is None:
@@ -77,18 +78,49 @@ def validate_admin(token: str) -> str:
         print("jwt err: {}".format(str(e)))
         raise credentials_exception
 
+def validate_user(token: str) -> str:
+    """
+    Validates a user's jwt token to identify the user
+    """
+    credentials_exception = httpError(status_code=401, detail="Request not authorized")
+    try:
+        payload: dict = jwt.decode(token, secret_key, algorithms=[algorithm])
+        email: str = str(payload.get("userEmail"))
+        id: str = str(payload.get("userId"))
+        if email is None:
+            print("No email")
+            raise credentials_exception
+        if id is None:
+            print("No user id")
+            raise credentials_exception
+        return id
+    except JWTError as e:
+        print("jwt err: {}".format(str(e)))
+        raise credentials_exception
+
 def get_admin(Id: str, db: Session) -> Admin:
     """
     Checks if there is an admin with the id passed as a parameter
     """
     try:
-        admin = db.query(Admin).filter_by(id = Id).first()
+        admin: Admin = db.query(Admin).filter_by(id = Id).first()
         return admin
     except Exception as e:
         print("Error: {}".format(str(e)))
         raise httpError(status_code=400, detail="Bad request")
 
-def verify_password(password: str, hashed: str):
+def get_user(Id: str, db: Session) -> User:
+    """
+    Checks if there is an admin with the id passed as a parameter
+    """
+    try:
+        user: User = db.query(User).filter_by(id = Id).first()
+        return user
+    except Exception as e:
+        print("Error: {}".format(str(e)))
+        raise httpError(status_code=400, detail="Bad request")
+
+def verify_password(password: str, hashed: str) -> bool:
     """
     Verifies admin's password
     """

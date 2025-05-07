@@ -19,8 +19,8 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 
 @router.get("/admins/me", status_code=200, response_model=AdminResponse)
-async def get_user(token: Annotated[str, Depends(oauth2_scheme)],
-                   db: Session = Depends(get_db)):
+async def get_admin_details(token: Annotated[str, Depends(oauth2_scheme)],
+                            db: Session = Depends(get_db)):
     """Endpoint for getting admin details"""
     try:
         id = validate_admin(token)

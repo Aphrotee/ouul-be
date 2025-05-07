@@ -3,7 +3,6 @@
 """Entry point for the app"""
 
 
-from app.main import app
 from dotenv import load_dotenv
 
 # Load the environment variables from the .env file

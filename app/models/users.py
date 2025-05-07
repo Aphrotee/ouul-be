@@ -53,10 +53,19 @@ class UserPasswordSchema(BaseModel):
     email: EmailStr # User's email address
     password: str # User's password
 
+class UserPasswordResetSchema(BaseModel):
+    email: EmailStr # User's email address
+    password: str # User's password
+    otp: str # User's otp for verification
+
 class UserPINSchema(BaseModel):
     email: EmailStr # User's email address
     password: str # User's password
     pin: str # User's pin
+
+class UserPINResetSchema(BaseModel):
+    pin: str # User's pin
+    otp: str # User's otp for verification
 
 class UserResponseSchema(BaseModel):
     id: UUID4 # Admin's unique identifier
