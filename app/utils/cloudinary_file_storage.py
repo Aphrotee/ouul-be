@@ -65,7 +65,7 @@ async def process_file_upload(files: List[UploadFile], folder: str) -> dict:
         file_extension = file.filename.split(".")[-1].lower()
 
         # Define content type based on file extension
-        content_type = 'image' if file_extension in ['jpg', 'jpeg'] else 'video' if file_extension == 'mp4' else None
+        content_type = 'image' if file_extension in ['jpg', 'jpeg', 'png'] else 'video' if file_extension == 'mp4' else None
 
         # change spaces to underscores in filename
         file.filename = file.filename.replace(" ", "_")
