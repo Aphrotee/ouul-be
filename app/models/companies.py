@@ -60,6 +60,7 @@ class CompanyResponseSchema(BaseModel):
     id: str
     created_at: datetime
     updated_at: datetime
+    user_id: str
     is_registered: bool
     country_of_incorporation: str
     type_of_company: str
