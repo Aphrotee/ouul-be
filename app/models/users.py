@@ -7,12 +7,12 @@ from typing import List
 from datetime import datetime
 from app.models.models import Base, Basemodel, Response
 from pydantic import BaseModel, EmailStr, UUID4
-from sqlalchemy import Column, DateTime, String, Boolean, Enum, JSON
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, DateTime, String, Boolean, Enum
+
 
 class UserType(str, enum.Enum):
     """Enum class defining the two types of user account types"""
-    startup= "startup"
+    startup = "startup"
     investor = "investor"
     corporate = "corporate"
     accelerator = "accelerator"

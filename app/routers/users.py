@@ -168,7 +168,7 @@ async def set_pin(userSchema: UserPINSchema,
         raise httpError(status_code=500, detail=str(e))
 
 @router.post("/users/auth/password-login", status_code=200, response_model=loginResponseSchema)
-async def user_login(userSchema: Annotated[OAuth2PasswordRequestForm, Depends()],
+async def user_password_login(userSchema: Annotated[OAuth2PasswordRequestForm, Depends()],
                      db: Session = Depends(get_db)):
     """Endpoint for user password login"""
     try:
@@ -200,7 +200,7 @@ async def user_login(userSchema: Annotated[OAuth2PasswordRequestForm, Depends()]
         raise httpError(status_code=500, detail=str(e))
 
 @router.post("/users/auth/pin-login", status_code=200, response_model=loginResponseSchema)
-async def user_login(userSchema: Annotated[OAuth2PasswordRequestForm, Depends()],
+async def user_pin_login(userSchema: Annotated[OAuth2PasswordRequestForm, Depends()],
                      X_Password_Authorization_Token: Annotated[str, Header()],
                      db: Session = Depends(get_db)):
     """Endpoint for user pin login"""
